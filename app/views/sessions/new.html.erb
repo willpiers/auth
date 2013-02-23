@@ -1,0 +1,26 @@
+Code From FB
+<br>
+<%= @code %>
+<br>
+Access Token?
+<br>
+<%= session[:access_token] %>
+<br><br>
+Keys for me <br>
+
+
+<h1>Login!</h1>
+
+<%= form_tag sessions_url do %>
+	<%= label_tag :email %>
+	<%= text_field_tag :email, params[:email] %>
+	<br>
+	<%= label_tag :password %>
+	<%= password_field_tag :password %>
+	<br>
+	<%= submit_tag "Sign in", :class => "btn", :disable_with => "Submitting..." %>
+<% end %>
+
+
+<input type="text" data-provide="typeahead" data-source="<%= @names %>" data-items='8' minLength='1'>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

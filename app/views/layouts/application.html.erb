@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auth</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+	<div class="navbar">
+	  <div class="navbar-inner">
+	    <%= link_to "SUP!?", root_url, :class => 'brand' %>
+	    <ul class="nav">
+	      <li class="active"><a href="#">Sup!</a></li>
+	      <% unless session[:access_token] %>
+		      <li><%= link_to "Sign in With Facebook!", 'https://www.facebook.com/dialog/oauth?client_id=341074429336009&redirect_uri=http://localhost:3000/&state=12345&scope=user_birthday,read_stream' %></li>
+	      <% end %>
+	      <% if current_user || session[:access_token] %>
+	      	<% if @me.present? %>
+		      	<li><%= link_to "#{@me['name']}", '#' %></li>
+	      	<% end %>
+		      <li><%= link_to "Sign out", sign_out_url, method: 'delete' %></li>
+	      <% else %>
+		      <li><%= link_to "Sign up", sign_up_url %></li>
+		      <li><%= link_to "Sign in", sign_in_url %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	</div>
+
+	<% flash.each do |name, msg| %>
+		<div class="alert alert-<%= name %>"><%= msg %><button type="button" class="close" data-dismiss="alert">&times;</button></div>
+	<% end %>
+
+	<%= yield %>
+</div>
+</body>
+</html>
