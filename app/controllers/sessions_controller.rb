@@ -1,3 +1,4 @@
+require 'open-uri'
 class SessionsController < ApplicationController
   def new
       if @code = params[:code]
@@ -10,10 +11,7 @@ class SessionsController < ApplicationController
         @token = session[:access_token]
         @me = JSON.parse(open("https://graph.facebook.com/me?access_token=#{@token}").read) || {key: 'value'}
         @friends_hash = JSON.parse(open("https://graph.facebook.com/me/friends?access_token=#{@token}").read)
-        @names = []
-        @friends_hash['data'].each do |friend|
-          @names << friend['name']
-        end
+        @names = @friends_hash['data'].map { |friend| friend['name'] }
       end
   end
 

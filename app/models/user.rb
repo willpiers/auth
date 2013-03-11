@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   		nil
   	end
   end
+
+  def User.facebook_thing(url)
+    return open(url).read
+  end
 end

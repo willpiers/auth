@@ -7,6 +7,11 @@ Access Token?
 <%= session[:access_token] %>
 <br><br>
 Keys for me <br>
+<% if @names.present? %>
+<% @names.each do |thing| %>
+	<%= thing %>,
+<% end %>
+<% end %>
 
 
 <h1>Login!</h1>
@@ -22,5 +27,5 @@ Keys for me <br>
 <% end %>
 
 
-<input type="text" data-provide="typeahead" data-source="<%= @names %>" data-items='8' minLength='1'>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<input data-provide="typeahead" data-source="<%= @names %>" data-items='20'>
+<br><br><br><br>
